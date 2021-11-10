@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\werkbon;
+use Illuminate\Http\Request;
+use App\Http\Controllers\ImageUploadController;
 use App\Models\werkboninfo;
 
 /*
@@ -21,6 +23,7 @@ Route::get('/', function ()  {
                 'werkbondata' => $werkbondata
             ]);
 })->name('home');
+
 Route::get('form', function()
 {
     return view('form');
@@ -31,6 +34,21 @@ Route::post('form', function () {
     return back();
 });
 
+Route::get('image-upload', [ ImageUploadController::class, 'imageUpload' ])->name('image.upload');
+
+Route::post('image-upload', [ ImageUploadController::class, 'imageUploadPost' ])->name('image.upload.post');
+
 Route::view('form','userview');
+Route::view('show','show');
+Route::get('show/{id}', function ($id)  {
+    $werkbom = werkboninfo::findOrFail($id);
+    return view('show', [
+        'werkbom' => $werkbom
+    ]);
+})->name('show');
 Route::post('submit',[werkbon::class, 'save']);
 
+Route::post('status', function (Request $request)  {
+    $afronden = DB::table('werkboninfo')->where('id', $request->id)->update(['status' => 'Afgerond']);
+    return redirect()->route('show', $request->id);
+})->name('status');

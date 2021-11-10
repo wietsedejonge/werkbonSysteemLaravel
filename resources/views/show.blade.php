@@ -13,20 +13,18 @@
   <br>
   <!-- Code die de data van de toegevoegde werkbonnen en deze in een card plaatst -->
     <div class="row">
-    <div class="col s0.5"></div>   <div class="col s6"><label>Voeg een werkbon toe! &nbsp;&nbsp;</label>
-    <a href="form" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">+</i></a></div>
-    @foreach($werkbondata as $werkbom)
     
     
 
 <div class="row">
 <div class="col s12 m4"></div>
     <div class="col s12 m5.5">
-      <a href="{{ route('show', $werkbom->id) }}">
+      <a href="show">
       <div style="border-radius:10px;"class="card blue-grey darken-1">
       <span class="card-title">
         <div  class="card-content white-text">
-        @if($werkbom->status == 'Niet Afgerond')
+          <h4><b>{{ $werkbom->name }}</b></h4>
+          @if($werkbom->status == 'Niet Afgerond')
                 <div class="chip red white-text">
                     <b>{{ $werkbom->status }}</b>
                 </div>
@@ -35,10 +33,24 @@
                     <b>{{ $werkbom->status }}</b>
                 </div>                   
                 @endif
-          <h4><b>{{ $werkbom->name }}</b></h4>
-          <hr>
           <h6>{{ $werkbom->description }}</h6>
+          <hr>
+          <b>Materialen:</b>
+          <p>{{ $werkbom->material1 }}</p>
+          <p>{{ $werkbom->material2 }}</p>
+          <p>{{ $werkbom->material3 }}</p>
+          <p>{{ $werkbom->material4 }}</p>
         </div>
+        <img src="{{ URL::to('/') }}/images/{{ $werkbom->image }}" width="150px">
+        @if($werkbom->status == 'Niet Afgerond')
+        <form action="{{ route('status') }}" method="POST">
+          @csrf
+          <input type="hidden" name="id" value="{{ $werkbom->id }}">
+         &nbsp; <button class="btn">
+            Afronden
+          </button>
+        </form>                 
+        @endif
         <div class="card-action">
         <a href=""><b>Begin datum:&nbsp;{{ $werkbom->startDate }}<b></a><a href=""><b>Eind datum:&nbsp;{{ $werkbom->finishDate }}<b></a>
         </div>
@@ -46,7 +58,6 @@
     </div>
   </div>
 </a>
-  @endforeach
   @include('includes.layouts.footer')
 </div>
 </html>
