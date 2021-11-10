@@ -41,7 +41,7 @@
           <p>{{ $werkbom->material3 }}</p>
           <p>{{ $werkbom->material4 }}</p>
         </div>
-        <img src="{{ URL::to('/') }}/images/{{ $werkbom->image }}" width="150px">
+        <img style="padding-left:20px;"src="{{ URL::to('/') }}/images/{{ $werkbom->image }}" width="150px" alt="Image">
         @if($werkbom->status == 'Niet Afgerond')
         <form action="{{ route('status') }}" method="POST">
           @csrf

@@ -27,6 +27,7 @@ request()->image->move(public_path('images'), $filename);
 
 $user->image=$filename;
         $user->save();
+        
         return redirect()->route('home');
     }
 
