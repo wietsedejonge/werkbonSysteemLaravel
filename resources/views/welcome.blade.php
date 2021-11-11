@@ -35,12 +35,12 @@
                     <b>{{ $werkbom->status }}</b>
                 </div>                   
                 @endif
-          <h4><b>{{ $werkbom->name }}</b></h4>
+          <h4><b><small><i class="bi bi-person-circle"></i></i></small>&nbsp;{{ $werkbom->name }}</b></h4>
           <hr>
-          <h6>{{ $werkbom->description }}</h6>
+          <h6><i class="bi bi-chat-left-text"></i>&nbsp;&nbsp;{{ $werkbom->description }}</h6>
         </div>
         <div class="card-action">
-        <a href=""><b>Begin datum:&nbsp;{{ $werkbom->startDate }}<b></a><a href=""><b>Eind datum:&nbsp;{{ $werkbom->finishDate }}<b></a>
+        <a href=""><i class="bi bi-alarm"></i>&nbsp;&nbsp;<b>Begin datum:&nbsp;{{ $werkbom->startDate }}<b></a><a href=""><i class="bi bi-alarm"></i>&nbsp;&nbsp;<b>Eind datum:&nbsp;{{ $werkbom->finishDate }}<b></a>
         </div>
       </div>
     </div>
