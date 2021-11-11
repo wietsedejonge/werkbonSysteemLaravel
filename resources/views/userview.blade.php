@@ -16,7 +16,7 @@
         <br>
         <input type="text" name="description" placeholder="* Omschrijving...." required>
         <br>
-        <input type="datetime-local" name="finishDate" placeholder="* Eind Datum: dd/mm/yy" required>
+        <input type="datetime-local" name="finishDate" placeholder="* Eind Datum: dd/mm/yy">
         <br><br><br>
         <p>Foto upload&nbsp; <i class="bi bi-card-image"></i></p>
         <input type="file" name="image">

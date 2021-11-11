@@ -18,7 +18,7 @@ use App\Models\werkboninfo;
 */
 
 Route::get('/', function ()  {
-    $werkbondata = werkboninfo::all();
+    $werkbondata = DB::table('werkboninfo')->orderBy('id', 'DESC')->get();
             return view('welcome', [
                 'werkbondata' => $werkbondata
             ]);
